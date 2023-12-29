@@ -1,10 +1,14 @@
 package com.example.project.pojos;
 
+import org.hibernate.mapping.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Category {
@@ -15,6 +19,9 @@ public class Category {
     
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private java.util.List<Product> products;
 
     // Default constructor
     public Category(){
